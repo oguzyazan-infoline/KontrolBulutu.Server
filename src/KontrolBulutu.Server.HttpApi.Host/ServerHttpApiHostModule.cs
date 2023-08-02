@@ -71,16 +71,16 @@ namespace KontrolBulutu.Server
                 {
                     options.FileSets.ReplaceEmbeddedByPhysical<ServerDomainSharedModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Server.Domain.Shared"));
+                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Domain.Shared"));
                     options.FileSets.ReplaceEmbeddedByPhysical<ServerDomainModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Server.Domain"));
+                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Domain"));
                     options.FileSets.ReplaceEmbeddedByPhysical<ServerApplicationContractsModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Server.Application.Contracts"));
+                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Application.Contracts"));
                     options.FileSets.ReplaceEmbeddedByPhysical<ServerApplicationModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Server.Application"));
+                            $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Application"));
                 });
             }
         }
