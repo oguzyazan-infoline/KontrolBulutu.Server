@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using KontrolBulutu.Server.EntityFrameworkCore;
 using KontrolBulutu.Server.Localization;
 using KontrolBulutu.Server.MultiTenancy;
 using KontrolBulutu.Server.Web.Menus;
@@ -37,19 +36,24 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Http.Client.IdentityModel.Web;
+using Volo.Abp.Caching.StackExchangeRedis;
+using Volo.Abp.AspNetCore.Mvc.Client;
+using Volo.Abp.AspNetCore.Authentication.OpenIdConnect;
 
 namespace KontrolBulutu.Server.Web
 {
     [DependsOn(
         typeof(ServerHttpApiModule),
-        typeof(ServerApplicationModule),
-        typeof(ServerEntityFrameworkCoreModule),
-        typeof(AbpAutofacModule),
-        typeof(AbpIdentityWebModule),
-        typeof(AbpSettingManagementWebModule),
-        typeof(AbpAccountWebIdentityServerModule),
+        typeof(ServerHttpApiClientModule),
+        typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
+        typeof(AbpAspNetCoreMvcClientModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
-        typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
+        typeof(AbpAutofacModule),
+        typeof(AbpCachingStackExchangeRedisModule),
+        typeof(AbpSettingManagementWebModule),
+        typeof(AbpHttpClientIdentityModelWebModule),
+        typeof(AbpIdentityWebModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule)
