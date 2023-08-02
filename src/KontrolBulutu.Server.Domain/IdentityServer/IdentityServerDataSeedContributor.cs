@@ -143,6 +143,25 @@ namespace KontrolBulutu.Server.IdentityServer
             var configurationSection = _configuration.GetSection("IdentityServer:Clients");
 
 
+            //Web Client
+            var webClientId = configurationSection["Server_Web:ClientId"];
+            if (!webClientId.IsNullOrWhiteSpace())
+            {
+                var webClientRootUrl = configurationSection["Server_Web:RootUrl"].EnsureEndsWith('/');
+
+                await CreateClientAsync(
+                    name: webClientId,
+                    scopes: commonScopes,
+                    grantTypes: new[] { "hybrid" },
+                    secret: (configurationSection["Server_Web:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    redirectUri: $"{webClientRootUrl}signin-oidc",
+                    postLogoutRedirectUri: $"{webClientRootUrl}signout-callback-oidc",
+                    frontChannelLogoutUri: $"{webClientRootUrl}Account/FrontChannelLogout",
+                    corsOrigins: new[] { webClientRootUrl.RemovePostFix("/") }
+                );
+            }
+
+
             //Console Test / Angular Client
             var consoleAndAngularClientId = configurationSection["Server_App:ClientId"];
             if (!consoleAndAngularClientId.IsNullOrWhiteSpace())
@@ -160,9 +179,9 @@ namespace KontrolBulutu.Server.IdentityServer
                     corsOrigins: new[] { webClientRootUrl.RemovePostFix("/") }
                 );
             }
-            
-            
-            
+
+
+
             // Swagger Client
             var swaggerClientId = configurationSection["Server_Swagger:ClientId"];
             if (!swaggerClientId.IsNullOrWhiteSpace())
