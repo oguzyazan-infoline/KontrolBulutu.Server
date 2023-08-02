@@ -98,8 +98,8 @@ namespace KontrolBulutu.Server
             {
                 Configure<AbpVirtualFileSystemOptions>(options =>
                 {
-                    options.FileSets.ReplaceEmbeddedByPhysical<ServerDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Server.Domain.Shared"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<ServerDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Server.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<ServerDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<ServerDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}KontrolBulutu.Server.Domain"));
                 });
             }
 
